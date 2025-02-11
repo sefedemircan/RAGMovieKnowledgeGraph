@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # RAGMovieKnowledgeGraph
 
 Film veritabanı üzerinde doğal dil sorguları yapabilen, Neo4j graf veritabanı ve LangChain tabanlı bir soru-cevap sistemi.
@@ -96,7 +95,7 @@ python main.py
 - ChatOpenAI modeli başlatır
 - Sorgu ve yanıt şablonlarını ayarlar
 - GraphCypherQAChain'i yapılandırır
-=======
+
 # RAGMovieKnowledgeGraph
 
 Film veritabanı üzerinde doğal dil sorguları yapabilen, Neo4j graf veritabanı ve LangChain tabanlı bir soru-cevap sistemi.
@@ -194,4 +193,3 @@ python main.py
 - ChatOpenAI modeli başlatır
 - Sorgu ve yanıt şablonlarını ayarlar
 - GraphCypherQAChain'i yapılandırır
->>>>>>> 82dedbd685d2e31f1c7a22ddca216a4ddf64000a
