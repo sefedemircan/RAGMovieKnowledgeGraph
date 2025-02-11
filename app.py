@@ -11,9 +11,9 @@ from google.colab import userdata
 OPENAI_API_KEY = userdata.get('OPENAI')
 
 # Neo4j bağlantı bilgileri
-NEO4J_URI = "neo4j+s://dde48c7a.databases.neo4j.io"
+NEO4J_URI = "your_neo4j_uri"
 NEO4J_USERNAME = "neo4j"
-NEO4J_PASSWORD = "igwCZKZmYMvBZPn7RB9cPYf926VbrcdalEygK4lQiuQ"
+NEO4J_PASSWORD = "your_neo4j_password"
 
 # Hugging Face model
 embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
@@ -57,7 +57,7 @@ def create_sample_data():
     MERGE (darkknight)-[:TURU]->(aksiyon)
     MERGE (darkknight)-[:TURU]->(dram)
     """
-    
+
     graph.query(create_query)
     print("Örnek veri başarıyla oluşturuldu!")
 
@@ -91,17 +91,17 @@ Yanıt:
 # QA zinciri oluşturma
 def create_qa_chain():
     llm = ChatOpenAI(temperature=0, openai_api_key=OPENAI_API_KEY)
-    
+
     cypher_prompt = PromptTemplate(
         template=CYPHER_TEMPLATE,
         input_variables=["query"]
     )
-    
+
     qa_prompt = PromptTemplate(
         template=RESPONSE_TEMPLATE,
         input_variables=["query", "cypher_query", "results"]
     )
-    
+
     chain = GraphCypherQAChain.from_llm(
         llm=llm,
         graph=graph,
@@ -112,24 +112,24 @@ def create_qa_chain():
         return_intermediate_steps=False,
         allow_dangerous_requests=True
     )
-    
+
     return chain
 
 def main():
     # Örnek veriyi oluştur
     create_sample_data()
-    
+
     # QA zincirini oluştur
     qa_chain = create_qa_chain()
-    
+
     print("\nFilm Bilgi Grafiği RAG Sistemi")
     print("Çıkmak için 'q' yazın")
-    
+
     while True:
         question = input("\nSorunuzu girin: ")
         if question.lower() == 'q':
             break
-            
+
         try:
             # Soruyu yanıtla
             response = qa_chain({"query": question})
